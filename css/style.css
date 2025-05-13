@@ -39,7 +39,7 @@ body {
 
 /* Estilo para las imágenes */
 img {
-    max-width: 10%; /* Limita el ancho máximo al 10% */
+    max-width: 500%; /* Limita el ancho máximo al 10% */
     height: auto; /* Mantiene la proporción de la imagen */
     display: block; /* Hace que la imagen sea un bloque */
     margin: 0 auto; /* Centra la imagen horizontalmente */
@@ -50,7 +50,7 @@ header {
     position: sticky; /* Hace que el encabezado permanezca visible al hacer scroll */
     top: 0; /* Fija el encabezado en la parte superior */
     z-index: 1000; /* Asegura que esté por encima de otros elementos */
-    background-color: var(--clr-black); /* Fondo blanco */
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo negro con 50% de transparencia */
     padding-block: 1rem; /* Espaciado vertical */
     box-shadow: 0 0 2rem -1rem rgba(0, 0, 0, 0.5); /* Sombra para darle profundidad */
 }
@@ -143,6 +143,7 @@ main {
 }
 
 /* Estilo para cada tarjeta de Pokémon */
+/* Estilo para cada tarjeta de Pokémon */
 .pokemon {
     border-radius: 1rem; /* Bordes redondeados */
     background-color: var(--clr-white); /* Fondo blanco */
@@ -152,8 +153,14 @@ main {
     position: relative; /* Posicionamiento relativo */
     isolation: isolate; /* Asegura que los elementos hijos no afecten a otros */
     overflow: hidden; /* Oculta contenido que se desborde */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave para el zoom y la sombra */
 }
 
+/* Efecto de zoom al pasar el mouse */
+.pokemon:hover {
+    transform: scale(1.07); /* Aumenta el tamaño al 105% */
+    box-shadow: 0 0 4rem -1rem rgba(0, 0, 0, 0.5); /* Aumenta la sombra */
+}
 
 /* Estilo para la imagen del Pokémon */
 .pokemon-imagen {
@@ -321,6 +328,6 @@ main {
 /* Diseño responsivo para pantallas muy grandes */
 @media screen and (min-width: 1200px) {
     .pokemon-todos {
-        grid-template-columns: 1fr 1fr 1fr 1fr ; /* Cuatro columnas */
+        grid-template-columns: 1fr 1fr 1fr 1fr; /* Cuatro columnas */
     }
 }

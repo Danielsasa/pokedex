@@ -42,8 +42,8 @@ function mostrarPokemon(pokemon) {
         .join("");
 
     const pokeId = pokemon.id.toString().padStart(3, "0"); // Formatea el ID a 3 dígitos
-    const tamaño = (pokemon.height / 10).toFixed(1); // Decímetros a metros
-    const peso = (pokemon.weight / 10).toFixed(1); // Hectogramos a kilogramos
+    const tamaño = (pokemon.height/10).toFixed(1); // Decímetros a metros
+    const peso = (pokemon.weight/10).toFixed(1); // Hectogramos a kilogramos
 
     const div = document.createElement("div");
     div.classList.add("pokemon");
@@ -63,7 +63,7 @@ function mostrarPokemon(pokemon) {
             </div>
             <div class="pokemon-stats">
                 <p class="stat">${tamaño}m</p>
-                <p class="stat">${peso}kg</p>/
+                <p class="stat">${peso}kg</p>
             </div>
         </div>
     `;

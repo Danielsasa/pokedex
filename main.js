@@ -58,12 +58,12 @@ function mostrarPokemon(pokemon) {
             </div>
             <div class="pokemon-tipos">${tipos}</div>
             <div class="pokemon-habilidades">
-                <p class="habilidad">${pokemon.abilities[0]?.ability.name || "N/A"}</p>
+                <p class="habilidad">${pokemon.abilities[0]?.ability.name || ""}</p>
                 <p class="habilidad">${pokemon.abilities[1]?.ability.name || ""}</p>
             </div>
             <div class="pokemon-stats">
                 <p class="stat">${tamaño}m</p>
-                <p class="stat">${peso}kg</p>
+                <p class="stat">${peso}kg</p>/
             </div>
         </div>
     `;

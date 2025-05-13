@@ -1,40 +1,25 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <!-- Metadatos básicos -->
-    <meta charset="UTF-8"> <!-- Codificación de caracteres -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Compatibilidad con navegadores antiguos -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Diseño responsivo -->
-    <title>Pokédex</title> <!-- Título de la página -->
-
-    <!-- Enlace al archivo CSS para los estilos -->
+    <meta charset="UTF-8"> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokédex</title> 
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Encabezado de la página -->
     <header>
-        <!-- Logo de la Pokédex -->
         <img src="imagen/pokedex.webp" alt="Logo Pokédex">
-
-        <!-- Contenedor de búsqueda -->
         <div class="search-container">
-            <!-- Campo de entrada para buscar Pokémon -->
             <input type="text" id="searchInput" placeholder="Buscar por nombre o número" />
-            <!-- Botón para iniciar la búsqueda -->
             <button id="searchButton">Buscar</button>
         </div>
     </header>
-
-    <!-- Contenido principal -->
     <main>
-        <!-- Contenedor para todos los Pokémon -->
         <div id="todos">
-            <!-- Lista donde se mostrarán los Pokémon -->
             <div class="pokemon-todos" id="listaPokemon"></div>
         </div>
     </main>
-
-    <!-- Archivo JavaScript para la funcionalidad -->
     <script src="main.js"></script>
 </body>
 </html>

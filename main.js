@@ -1,35 +1,53 @@
+// Selección de elementos del DOM
 const listaPokemon = document.querySelector("#listaPokemon");
-const botonesHeader = document.querySelectorAll(".btn-header");
-const cargarMasBtn = document.createElement("button"); 
-cargarMasBtn.textContent = "Cargar más";
-cargarMasBtn.classList.add("btnCargarMas");
-let URL = "https://pokeapi.co/api/v2/pokemon/";
+const searchInput = document.querySelector("#searchInput");
+const searchButton = document.querySelector("#searchButton");
+
+// Crear botones dinámicos
+const cargarMasBtn = crearBoton("Cargar más", "btnCargarMas");
+const regresarBtn = crearBoton("Regresar", "btnRegresar", true); // Oculto inicialmente
+
+// Variables para la API y control de paginación
+const URL = "https://pokeapi.co/api/v2/pokemon/";
 let offset = 0; // Controla el inicio de los Pokémon a cargar
 const limit = 52; // Cantidad de Pokémon por página
 
+// Función para crear botones dinámicamente
+function crearBoton(texto, clase, oculto = false) {
+    const boton = document.createElement("button");
+    boton.textContent = texto;
+    boton.classList.add(clase);
+    if (oculto) boton.style.display = "none";
+    document.body.appendChild(boton);
+    return boton;
+}
+
+// Función para cargar Pokémon desde la API
 async function cargarPokemon(offset, limit) {
     for (let i = offset + 1; i <= offset + limit && i <= 1025; i++) {
-        const response = await fetch(URL + i);
-        const data = await response.json();
-        mostrarPokemon(data);
+        try {
+            const response = await fetch(`${URL}${i}`);
+            const data = await response.json();
+            mostrarPokemon(data);
+        } catch (error) {
+            console.error(`Error al cargar el Pokémon con ID ${i}:`, error);
+        }
     }
 }
 
+// Función para mostrar un Pokémon en el DOM
 function mostrarPokemon(pokemon) {
-    let tipos = pokemon.types.map((type) => `<p class="${type.type.name} tipo">${type.type.name}</p>`);
-    tipos = tipos.join('');
+    const tipos = pokemon.types
+        .map((type) => `<p class="${type.type.name} tipo">${type.type.name}</p>`)
+        .join("");
 
-    let pokeId = pokemon.id.toString();
-    if (pokeId.length === 1) {
-        pokeId = "00" + pokeId;
-    } else if (pokeId.length === 2) {
-        pokeId = "0" + pokeId;
-    }
+    const pokeId = pokemon.id.toString().padStart(3, "0"); // Formatea el ID a 3 dígitos
+    const tamaño = (pokemon.height / 10).toFixed(1); // Decímetros a metros
+    const peso = (pokemon.weight / 10).toFixed(1); // Hectogramos a kilogramos
 
     const div = document.createElement("div");
     div.classList.add("pokemon");
     div.innerHTML = `
-        <p class="pokemon-id-back">#${pokeId}</p>
         <div class="pokemon-imagen">
             <img src="${pokemon.sprites.other["official-artwork"].front_default}" alt="${pokemon.name}">
         </div>
@@ -38,53 +56,58 @@ function mostrarPokemon(pokemon) {
                 <p class="pokemon-id">#${pokeId}</p>
                 <h2 class="pokemon-nombre">${pokemon.name}</h2>
             </div>
-            <div class="pokemon-tipos">
-                ${tipos}
-            </div>
+            <div class="pokemon-tipos">${tipos}</div>
             <div class="pokemon-habilidades">
-                <p class="habilidad">${pokemon.abilities[0].ability.name}</p>
-                <p class="habilidad">${pokemon.abilities[1] ? pokemon.abilities[1].ability.name : ''}</p>
+                <p class="habilidad">${pokemon.abilities[0]?.ability.name || "N/A"}</p>
+                <p class="habilidad">${pokemon.abilities[1]?.ability.name || ""}</p>
             </div>
             <div class="pokemon-stats">
-                <p class="stat">${pokemon.height}m</p>
-                <p class="stat">${pokemon.weight}kg</p>
+                <p class="stat">${tamaño}m</p>
+                <p class="stat">${peso}kg</p>
             </div>
         </div>
     `;
-    listaPokemon.append(div);
+    listaPokemon.appendChild(div);
 }
-
-botonesHeader.forEach(boton => boton.addEventListener("click", async (event) => {
-    const botonId = event.currentTarget.id;
-
-    listaPokemon.innerHTML = "";
-    offset = 0; // Reinicia el offset al cambiar de filtro
-
-    for (let i = 1; i <= 1025; i++) {
-        const response = await fetch(URL + i);
-        const data = await response.json();
-
-        if (botonId === "ver-todos") {
-            mostrarPokemon(data);
-        } else {
-            const tipos = data.types.map(type => type.type.name);
-            if (tipos.some(tipo => tipo.includes(botonId))) {
-                mostrarPokemon(data);
-            }
-        }
-    }
-}));
-
-
 
 // Evento para el botón "Cargar más"
 cargarMasBtn.addEventListener("click", () => {
     offset += limit; // Incrementa el offset
-    cargarPokemon(offset, limit); // Carga los siguientes 50 Pokémon
+    cargarPokemon(offset, limit); // Carga los siguientes Pokémon
 });
 
-// Cargar los primeros 50 Pokémon al inicio
-cargarPokemon(offset, limit);
+// Evento para el botón "Regresar"
+regresarBtn.addEventListener("click", () => {
+    listaPokemon.innerHTML = ""; // Limpia la lista de Pokémon
+    offset = 0; // Reinicia el offset
+    cargarPokemon(offset, limit); // Carga los primeros Pokémon
+    regresarBtn.style.display = "none"; // Oculta el botón "Regresar"
+    cargarMasBtn.style.display = "block"; // Muestra el botón "Cargar más"
+});
 
-// Agregar el botón "Cargar más" al final de la lista
-document.body.appendChild(cargarMasBtn);
+// Evento para el botón de búsqueda
+searchButton.addEventListener("click", async () => {
+    const query = searchInput.value.trim().toLowerCase(); // Obtiene el valor del input y lo normaliza
+    if (!query) {
+        alert("Por favor, ingresa un nombre o número de Pokémon.");
+        return;
+    }
+
+    try {
+        const response = await fetch(`${URL}${query}`); // Busca por nombre o número
+        if (!response.ok) throw new Error("Pokémon no encontrado");
+
+        const data = await response.json();
+        listaPokemon.innerHTML = ""; // Limpia la lista
+        mostrarPokemon(data); // Muestra el Pokémon encontrado
+
+        // Oculta el botón "Cargar más" y muestra el botón "Regresar"
+        cargarMasBtn.style.display = "none";
+        regresarBtn.style.display = "block";
+    } catch (error) {
+        alert("No se encontró ningún Pokémon con ese nombre o número.");
+    }
+});
+
+// Cargar los primeros Pokémon al inicio
+cargarPokemon(offset, limit);

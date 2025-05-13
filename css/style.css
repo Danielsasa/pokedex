@@ -1,41 +1,26 @@
-img {
-    max-width: 10%; /* Limita el ancho máximo al 10% */
-    height: auto; /* Mantiene la proporción de la imagen */
-    display: block; /* Hace que la imagen sea un bloque */
-    margin: 0 auto; /* Centra la imagen horizontalmente */
-}
-header {
-    position: sticky;  /* Hace que el encabezado permanezca visible al hacer scroll */
-    top: 0;
-    z-index: 1000; /* Asegura que esté por encima de otros elementos */
-    background-color: var(--clr-white);
-    padding-block: 1rem;/* Espaciado vertical */ 
-    box-shadow: 0 0 2rem -1rem rgba(0, 0, 0, .5);/* Sombra para darle profundidad */
-}
-
-
+/* Variables globales para colores */
 :root {
---clr-black: rgb(28, 28, 28);
---clr-gray: rgb(236, 236, 236);
---clr-white: rgb(247, 247, 247);
---type-normal: rgb(168, 168, 120);
---type-fire: rgb(240, 128, 48);
---type-water: rgb(104, 144, 240);
---type-grass: rgb(120, 200, 80);
---type-electric: rgb(248, 208, 48);
---type-ice: rgb(152, 216, 216);
---type-fighting: rgb(192, 48, 40);
---type-poison: rgb(160, 64, 160);
---type-ground: rgb(224, 192, 104);
---type-flying: rgb(168, 144, 240);
---type-psychic: rgb(248, 88, 136);
---type-bug: rgb(168, 184, 32);
---type-rock: rgb(184, 160, 56);
---type-ghost: rgb(112, 88, 152);
---type-dark: rgb(112, 88, 72);
---type-dragon: rgb(112, 56, 248);
---type-steel: rgb(184, 184, 208);
---type-fairy: rgb(240, 182, 188);
+    --clr-black: rgb(28, 28, 28); /* Negro */
+    --clr-gray: rgb(236, 236, 236); /* Gris claro */
+    --clr-white: rgb(247, 247, 247); /* Blanco */
+    --type-normal: rgb(168, 168, 120); /* Tipo Normal */
+    --type-fire: rgb(240, 128, 48); /* Tipo Fuego */
+    --type-water: rgb(104, 144, 240); /* Tipo Agua */
+    --type-grass: rgb(120, 200, 80); /* Tipo Planta */
+    --type-electric: rgb(248, 208, 48); /* Tipo Eléctrico */
+    --type-ice: rgb(152, 216, 216); /* Tipo Hielo */
+    --type-fighting: rgb(192, 48, 40); /* Tipo Lucha */
+    --type-poison: rgb(160, 64, 160); /* Tipo Veneno */
+    --type-ground: rgb(224, 192, 104); /* Tipo Tierra */
+    --type-flying: rgb(168, 144, 240); /* Tipo Volador */
+    --type-psychic: rgb(248, 88, 136); /* Tipo Psíquico */
+    --type-bug: rgb(168, 184, 32); /* Tipo Bicho */
+    --type-rock: rgb(184, 160, 56); /* Tipo Roca */
+    --type-ghost: rgb(112, 88, 152); /* Tipo Fantasma */
+    --type-dark: rgb(112, 88, 72); /* Tipo Siniestro */
+    --type-dragon: rgb(112, 56, 248); /* Tipo Dragón */
+    --type-steel: rgb(184, 184, 208); /* Tipo Acero */
+    --type-fairy: rgb(240, 182, 188); /* Tipo Hada */
 }
 
 /* Estilo global para todos los elementos */
@@ -46,164 +31,90 @@ header {
     color: var(--clr-black); /* Color de texto predeterminado */
 }
 
-ul {
-    list-style-type: none; /* Elimina los puntos de las listas */
-}
-
-button {
-    background-color: transparent; /* Fondo transparente */
-    border: 0; /* Sin bordes */
-    border-radius: 0; /* Sin bordes redondeados */
-}
-
+/* Estilo para el cuerpo de la página */
 body {
-    min-height: 100vh;
-    background-color: var(--clr-gray);
+    min-height: 100vh; /* Altura mínima del cuerpo */
+    background-color: var(--clr-gray); /* Fondo gris claro */
 }
 
+/* Estilo para las imágenes */
+img {
+    max-width: 10%; /* Limita el ancho máximo al 10% */
+    height: auto; /* Mantiene la proporción de la imagen */
+    display: block; /* Hace que la imagen sea un bloque */
+    margin: 0 auto; /* Centra la imagen horizontalmente */
+}
+
+/* Estilo para el encabezado */
 header {
-    padding-block: 1rem;
-    box-shadow: 0 0 2rem -1rem rgba(0, 0, 0, .5);
+    position: sticky; /* Hace que el encabezado permanezca visible al hacer scroll */
+    top: 0; /* Fija el encabezado en la parte superior */
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    background-color: var(--clr-white); /* Fondo blanco */
+    padding-block: 1rem; /* Espaciado vertical */
+    box-shadow: 0 0 2rem -1rem rgba(0, 0, 0, 0.5); /* Sombra para darle profundidad */
 }
 
-.nav {
-       display: flex; /* Contenedor flexible */
-    flex-direction: column; /* Elementos en columna */
-    gap: 1rem; /* Espaciado entre elementos */
-    align-items: flex-start; /* Alinea los elementos al inicio */
-    padding-inline: 2rem; /* Espaciado horizontal */
-    max-width: 1000px; /* Ancho máximo */
-    margin: 0 auto; /* Centra la navegación */
+/* Estilo para el contenedor de búsqueda */
+.search-container {
+    display: flex; /* Contenedor flexible */
+    justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: center; /* Centra los elementos verticalmente */
+    margin: 1rem 0; /* Espaciado vertical */
+    gap: 0.5rem; /* Espaciado entre elementos */
 }
 
-.nav-list {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: .5rem;
+/* Estilo para el campo de entrada */
+#searchInput {
+    padding: 0.5rem; /* Espaciado interno */
+    font-size: 1rem; /* Tamaño del texto */
+    border: 1px solid #ccc; /* Borde gris claro */
+    border-radius: 0.5rem; /* Bordes redondeados */
+    width: 200px; /* Ancho fijo */
 }
 
-.btn-header {
-    background-color: var(--clr-gray);
-    padding: .5rem;
-    border-radius: 100vmax;
-    cursor: pointer;
-    text-transform: uppercase;
-    font-weight: 600;
-    box-shadow: 0 0 1rem rgba(0, 0, 0, .25);
-    transition: .2s;
+/* Estilo para el botón de búsqueda */
+#searchButton {
+    padding: 0.5rem 1rem; /* Espaciado interno */
+    font-size: 1rem; /* Tamaño del texto */
+    background-color: #007bff; /* Fondo azul */
+    color: white; /* Texto blanco */
+    border: none; /* Sin bordes */
+    border-radius: 0.5rem; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar el mouse */
+    transition: background-color 0.3s ease; /* Transición suave */
 }
 
-.btn-header:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 2rem rgba(0, 0, 0, .25);
+#searchButton:hover {
+    background-color: #0056b3; /* Azul más oscuro al pasar el mouse */
 }
 
-main {
-    padding: 2rem;
-    max-width: 1000px;
-    margin: 0 auto;
+/* Estilo para el botón "Regresar" */
+.btnRegresar {
+    display: block; /* Botón como bloque */
+    margin: 1rem auto; /* Centra el botón horizontalmente */
+    padding: 0.75rem 1.5rem; /* Tamaño del botón */
+    background-color: #dc3545; /* Fondo rojo */
+    color: white; /* Texto blanco */
+    border: none; /* Sin bordes */
+    border-radius: 0.5rem; /* Bordes redondeados */
+    font-size: 1rem; /* Tamaño del texto */
+    font-weight: bold; /* Texto en negrita */
+    cursor: pointer; /* Cambia el cursor al pasar el mouse */
+    transition: background-color 0.3s ease; /* Transición suave */
 }
 
-.pokemon-todos {
-    display: grid;
-    gap: 1rem;
+.btnRegresar:hover {
+    background-color: #c82333; /* Rojo más oscuro */
 }
 
-.pokemon {
-    border-radius: 1rem;
-    background-color: var(--clr-white);
-    box-shadow: 0 0 3rem -1rem rgba(0, 0, 0, .25);
-    padding-block: 1rem;
-    text-transform: uppercase;
-    position: relative;
-    isolation: isolate;
-    overflow: hidden;
-}
-
-.pokemon-id-back {
-    position: absolute;
-    top: 1rem;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 6rem;
-    font-weight: 800;
-    z-index: -1;
-    color: var(--clr-gray);
-}
-
-.pokemon-imagen {
-    padding-inline: 1rem;
-    display: flex;
-    justify-content: center;
-}
-
-.pokemon-imagen img {
-    width: 100%;
-    max-width: 6rem;
-}
-
-.pokemon-info {
-    display: flex;
-    flex-direction: column;
-    gap: .5rem;
-    padding-inline: 1rem;
-    align-items: center;
-    text-align: center;
-}
-
-.nombre-contenedor {
-    display: flex;
-    align-items: center;
-    column-gap: .5rem;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.pokemon-id {
-    background-color: var(--clr-gray);
-    padding: .25rem .5rem;
-    border-radius: 100vmax;
-    font-size: .75rem;
-    font-weight: 500;
-}
-
-.pokemon-nombre {
-    font-size: 1.4rem;
-}
-
-.pokemon-tipos {
-    display: flex;
-    gap: .5rem;
-    font-size: .75rem;
-    font-weight: 500;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.tipo {
-    padding: .25rem .5rem;
-    border-radius: 100vmax;
-}
-
-.pokemon-stats {
-    display: flex;
-    gap: 1rem;
-    font-size: .85rem;
-}
-
-.stat {
-    background-color: var(--clr-gray);
-    padding: .25rem .5rem;
-    border-radius: 100vmax;
-}
-
+/* Estilo para el botón "Cargar más" */
 .btnCargarMas {
-    display: block;
+    display: block; /* Botón como bloque */
     margin: 2rem auto; /* Centra el botón horizontalmente */
     padding: 0.75rem 1.5rem; /* Tamaño del botón */
-    background-color: #007bff; /* Color azul */
-    color: rgb(255, 255, 255); /* Texto blanco */
+    background-color: #007bff; /* Fondo azul */
+    color: white; /* Texto blanco */
     border: none; /* Sin bordes */
     border-radius: 0.5rem; /* Bordes redondeados */
     font-size: 1rem; /* Tamaño del texto */
@@ -213,28 +124,85 @@ main {
 }
 
 .btnCargarMas:hover {
-    background-color: #0056b3; /* Azul más oscuro al pasar el mouse */
+    background-color: #0056b3; /* Azul más oscuro */
 }
 
-@media screen and (min-width: 470px) {
-    .pokemon-todos {
-        grid-template-columns: 1fr 1fr;
-    }
+/* Estilo para el contenedor principal */
+main {
+    padding: 2rem; /* Espaciado interno */
+    max-width: 1000px; /* Ancho máximo */
+    margin: 0 auto; /* Centra el contenedor */
 }
 
-@media screen and (min-width: 700px) {
-    .pokemon-todos {
-        grid-template-columns: 1fr 1fr 1fr ;
-    }
+/* Estilo para el contenedor de Pokémon */
+.pokemon-todos {
+    display: grid; /* Diseño de cuadrícula */
+    gap: 1rem; /* Espaciado entre elementos */
 }
 
-@media screen and (min-width: 1000px) {
-    .pokemon-todos {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-    }
+/* Estilo para cada tarjeta de Pokémon */
+.pokemon {
+    border-radius: 1rem; /* Bordes redondeados */
+    background-color: var(--clr-white); /* Fondo blanco */
+    box-shadow: 0 0 3rem -1rem rgba(0, 0, 0, 0.25); /* Sombra para profundidad */
+    padding-block: 1rem; /* Espaciado vertical */
+    text-transform: uppercase; /* Texto en mayúsculas */
+    position: relative; /* Posicionamiento relativo */
+    isolation: isolate; /* Asegura que los elementos hijos no afecten a otros */
+    overflow: hidden; /* Oculta contenido que se desborde */
+}
+
+/* Estilo para la imagen del Pokémon */
+.pokemon-imagen {
+    padding-inline: 1rem; /* Espaciado horizontal */
+    display: flex; /* Contenedor flexible */
+    justify-content: center; /* Centra la imagen */
+}
+
+.pokemon-imagen img {
+    width: 100%; /* Imagen responsiva */
+    max-width: 6rem; /* Ancho máximo */
+}
+
+/* Estilo para la información del Pokémon */
+.pokemon-info {
+    display: flex; /* Contenedor flexible */
+    flex-direction: column; /* Elementos en columna */
+    gap: 0.5rem; /* Espaciado entre elementos */
+    padding-inline: 1rem; /* Espaciado horizontal */
+    align-items: center; /* Centra los elementos */
+    text-align: center; /* Centra el texto */
 }
 
 
+/* Estilo para los tipos de Pokémon */
+.pokemon-tipos {
+    display: flex; /* Contenedor flexible */
+    gap: 0.5rem; /* Espaciado entre elementos */
+    font-size: 0.75rem; /* Tamaño del texto */
+    font-weight: 500; /* Peso medio */
+    flex-wrap: wrap; /* Permite que los elementos se ajusten */
+    justify-content: center; /* Centra los elementos */
+}
+
+/* Estilo para los tipos específicos */
+.tipo {
+    padding: 0.25rem 0.5rem; /* Espaciado interno */
+    border-radius: 100vmax; /* Bordes completamente redondeados */
+}
+
+/* Estilo para las estadísticas de los Pokémon */
+.pokemon-stats {
+    display: flex; /* Contenedor flexible */
+    gap: 1rem; /* Espaciado entre elementos */
+    font-size: 0.85rem; /* Tamaño del texto */
+}
+
+.stat {
+    background-color: var(--clr-gray); /* Fondo gris claro */
+    padding: 0.25rem 0.5rem; /* Espaciado interno */
+    border-radius: 100vmax; /* Bordes completamente redondeados */
+}
 
 .normal {
     background-color: var(--type-normal);
@@ -326,3 +294,30 @@ main {
     color: var(--clr-black);
 }
 
+/* Diseño responsivo para pantallas medianas */
+@media screen and (min-width: 470px) {
+    .pokemon-todos {
+        grid-template-columns: 1fr; /* Una columnas */
+    }
+}
+
+/* Diseño responsivo para pantallas grandes */
+@media screen and (min-width: 700px) {
+    .pokemon-todos {
+        grid-template-columns: 1fr 1fr; /* Tres columnas */
+    }
+}
+
+/* Diseño responsivo para pantallas grandes */
+@media screen and (min-width: 900px) {
+    .pokemon-todos {
+        grid-template-columns: 1fr 1fr 1fr; /* Tres columnas */
+    }
+}
+
+/* Diseño responsivo para pantallas muy grandes */
+@media screen and (min-width: 1200px) {
+    .pokemon-todos {
+        grid-template-columns: 1fr 1fr 1fr 1fr; /* Cuatro columnas */
+    }
+}

@@ -34,7 +34,7 @@
 /* Estilo para el cuerpo de la página */
 body {
     min-height: 100vh; /* Altura mínima del cuerpo */
-    background-color: var(--clr-gray); /* Fondo gris claro */
+    background-color: var(--clr-black); /* Fondo gris claro */
 }
 
 /* Estilo para las imágenes */
@@ -50,7 +50,7 @@ header {
     position: sticky; /* Hace que el encabezado permanezca visible al hacer scroll */
     top: 0; /* Fija el encabezado en la parte superior */
     z-index: 1000; /* Asegura que esté por encima de otros elementos */
-    background-color: var(--clr-white); /* Fondo blanco */
+    background-color: var(--clr-black); /* Fondo blanco */
     padding-block: 1rem; /* Espaciado vertical */
     box-shadow: 0 0 2rem -1rem rgba(0, 0, 0, 0.5); /* Sombra para darle profundidad */
 }
@@ -62,6 +62,7 @@ header {
     align-items: center; /* Centra los elementos verticalmente */
     margin: 1rem 0; /* Espaciado vertical */
     gap: 0.5rem; /* Espaciado entre elementos */
+    
 }
 
 /* Estilo para el campo de entrada */
@@ -71,14 +72,15 @@ header {
     border: 1px solid #ccc; /* Borde gris claro */
     border-radius: 0.5rem; /* Bordes redondeados */
     width: 200px; /* Ancho fijo */
+    background-color: #fffb06;
 }
 
 /* Estilo para el botón de búsqueda */
 #searchButton {
     padding: 0.5rem 1rem; /* Espaciado interno */
     font-size: 1rem; /* Tamaño del texto */
-    background-color: #007bff; /* Fondo azul */
-    color: white; /* Texto blanco */
+    background-color: #fffb06; /* Fondo azul */
+    color: blue; /* Texto blanco */
     border: none; /* Sin bordes */
     border-radius: 0.5rem; /* Bordes redondeados */
     cursor: pointer; /* Cambia el cursor al pasar el mouse */
@@ -152,16 +154,17 @@ main {
     overflow: hidden; /* Oculta contenido que se desborde */
 }
 
+
 /* Estilo para la imagen del Pokémon */
 .pokemon-imagen {
     padding-inline: 1rem; /* Espaciado horizontal */
     display: flex; /* Contenedor flexible */
-    justify-content: center; /* Centra la imagen */
+    justify-content: center;
 }
 
 .pokemon-imagen img {
     width: 100%; /* Imagen responsiva */
-    max-width: 6rem; /* Ancho máximo */
+    max-width: 15rem; /* Ancho máximo */
 }
 
 /* Estilo para la información del Pokémon */
@@ -199,7 +202,7 @@ main {
 }
 
 .stat {
-    background-color: var(--clr-gray); /* Fondo gris claro */
+    background-color: #fffb06;
     padding: 0.25rem 0.5rem; /* Espaciado interno */
     border-radius: 100vmax; /* Bordes completamente redondeados */
 }
@@ -318,6 +321,6 @@ main {
 /* Diseño responsivo para pantallas muy grandes */
 @media screen and (min-width: 1200px) {
     .pokemon-todos {
-        grid-template-columns: 1fr 1fr 1fr 1fr; /* Cuatro columnas */
+        grid-template-columns: 1fr 1fr 1fr 1fr ; /* Cuatro columnas */
     }
 }

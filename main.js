@@ -42,11 +42,18 @@ function mostrarPokemon(pokemon) {
         .join("");
 
     const pokeId = pokemon.id.toString().padStart(3, "0"); // Formatea el ID a 3 dígitos
-    const tamaño = (pokemon.height/10).toFixed(1); // Decímetros a metros
-    const peso = (pokemon.weight/10).toFixed(1); // Hectogramos a kilogramos
+    const tamaño = (pokemon.height / 10).toFixed(1); // Decímetros a metros
+    const peso = (pokemon.weight / 10).toFixed(1); // Hectogramos a kilogramos
 
+    // Crear el elemento de la tarjeta
     const div = document.createElement("div");
-    div.classList.add("pokemon");
+    div.classList.add("pokemon"); // Clase base para la tarjeta
+
+    // Agregar la clase del tipo principal del Pokémon
+    const primaryType = pokemon.types[0].type.name; // Suponiendo que la API devuelve los tipos en un array
+    div.classList.add(primaryType); // Agrega la clase del tipo (ej. 'fire', 'water', etc.)
+
+    // Contenido de la tarjeta
     div.innerHTML = `
         <div class="pokemon-imagen">
             <img src="${pokemon.sprites.other["official-artwork"].front_default}" alt="${pokemon.name}">
@@ -67,6 +74,8 @@ function mostrarPokemon(pokemon) {
             </div>
         </div>
     `;
+
+    // Agregar la tarjeta al contenedor
     listaPokemon.appendChild(div);
 }
 

@@ -37,23 +37,29 @@ async function cargarPokemon(offset, limit) {
 
 // Función para mostrar un Pokémon en el DOM
 function mostrarPokemon(pokemon) {
+    // Genera el HTML para los tipos del Pokémon, cada tipo será un <p> con su clase correspondiente
     const tipos = pokemon.types
         .map((type) => `<p class="${type.type.name} tipo">${type.type.name}</p>`)
         .join("");
 
-    const pokeId = pokemon.id.toString().padStart(3, "0"); // Formatea el ID a 3 dígitos
-    const tamaño = (pokemon.height / 10).toFixed(1); // Decímetros a metros
-    const peso = (pokemon.weight / 10).toFixed(1); // Hectogramos a kilogramos
+    // Formatea el ID del Pokémon a 3 dígitos (por ejemplo, 001, 025, 150)
+    const pokeId = pokemon.id.toString().padStart(3, "0");
 
-    // Crear el elemento de la tarjeta
+    // Convierte la altura de decímetros a metros y la deja con un decimal
+    const tamaño = (pokemon.height / 10).toFixed(1);
+
+    // Convierte el peso de hectogramos a kilogramos y la deja con un decimal
+    const peso = (pokemon.weight / 10).toFixed(1);
+
+    // Crea el elemento div que será la tarjeta del Pokémon
     const div = document.createElement("div");
-    div.classList.add("pokemon"); // Clase base para la tarjeta
+    div.classList.add("pokemon"); // Clase base para el estilo de la tarjeta
 
-    // Agregar la clase del tipo principal del Pokémon
-    const primaryType = pokemon.types[0].type.name; // Suponiendo que la API devuelve los tipos en un array
-    div.classList.add(primaryType); // Agrega la clase del tipo (ej. 'fire', 'water', etc.)
+    // Obtiene el tipo principal del Pokémon y lo agrega como clase para el color de fondo
+    const primaryType = pokemon.types[0].type.name;
+    div.classList.add(primaryType); // Así el fondo cambia según el tipo
 
-    // Contenido de la tarjeta
+    // Define el contenido HTML de la tarjeta con la información del Pokémon
     div.innerHTML = `
         <div class="pokemon-imagen">
             <img src="${pokemon.sprites.other["official-artwork"].front_default}" alt="${pokemon.name}">
@@ -75,7 +81,7 @@ function mostrarPokemon(pokemon) {
         </div>
     `;
 
-    // Agregar la tarjeta al contenedor
+    // Agrega la tarjeta creada al contenedor principal de la lista de Pokémon
     listaPokemon.appendChild(div);
 }
 
